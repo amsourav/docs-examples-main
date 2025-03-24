@@ -116,7 +116,7 @@ public class CheckoutController : Controller
         CheckoutPaymentIntent intent = (CheckoutPaymentIntent)
             Enum.Parse(typeof(CheckoutPaymentIntent), "CAPTURE", true);
 
-        OrdersCreateInput ordersCreateInput = new OrdersCreateInput
+        CreateOrderInput ordersCreateInput = new CreateOrderInput
         {
             Body = new OrderRequest
             {
@@ -152,7 +152,7 @@ public class CheckoutController : Controller
 
     private async Task<dynamic> _CaptureOrder(string orderID)
     {
-        OrdersCaptureInput ordersCaptureInput = new OrdersCaptureInput { Id = orderID, };
+        CaptureOrderInput ordersCaptureInput = new CaptureOrderInput { Id = orderID, };
 
         ApiResponse<Order> result = await _ordersController.OrdersCaptureAsync(ordersCaptureInput);
 
